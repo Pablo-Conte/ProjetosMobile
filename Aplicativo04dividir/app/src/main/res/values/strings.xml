@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Aplicativo04-dividir</string>
+    <string name="msgTitulo">Aplicativo04</string>
+    <string name="msgOperando1">Primeiro operando:</string>
+    <string name="msgOperando2">Segundo operando:</string>
+    <string name="msgResultado">Resultado da operação</string>
+    <string name="msgSomar">+</string>
+    <string name="msgSubtrair">-</string>
+    <string name="msgMultiplicar">x</string>
+    <string name="msgDividir">/</string>
+    <string name="msgLimpar">Limpar</string>
+</resources>

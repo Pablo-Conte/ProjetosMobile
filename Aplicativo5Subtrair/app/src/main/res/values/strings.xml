@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Aplicativo5-Subtrair</string>
+    <string name="msgTitulo">Calcular Subtração</string>
+    <string name="msgOperador1">Primeiro Operador</string>
+    <string name="msgOperador2">Segundo Operador</string>
+    <string name="msgResultado">Resultado da Operação</string>
+    <string name="msgHintOperador1">Informe o operando 1</string>
+    <string name="msgHintOperador2">Informe o operando 2</string>
+
+    <string name="msgCalcular">Calcular</string>
+    <string name="msgLimpar">Limpar</string>
+</resources>
