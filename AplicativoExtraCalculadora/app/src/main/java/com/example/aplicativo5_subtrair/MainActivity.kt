@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         var btn9 = findViewById(R.id.btn9) as Button
 
         //Função para colocar números no edit text em focus: putNumber()
-        //1 -> Passar o btn@ como parametro
+        //1 -> Passar um Int no listener do btn@ como parametro
         //2 -> Pegar esse btn e verificar qual dos botões de 1..9 é para jogar dentro do edt em focus
         //3 -> Passar o número para dentro do edt
 
