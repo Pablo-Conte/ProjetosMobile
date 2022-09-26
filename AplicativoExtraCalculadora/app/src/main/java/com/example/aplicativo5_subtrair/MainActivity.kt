@@ -3,10 +3,7 @@ package com.example.aplicativo5_subtrair
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,12 +12,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var edtOperando1 = findViewById(R.id.edtOperando1) as EditText
-        var edtOperando2 = findViewById(R.id.edtOperando2) as EditText
-        var btnCalcular = findViewById(R.id.btnCalcular) as Button
+
+        var btnSoma = findViewById(R.id.btnSoma) as Button
+        var btnSubtracao = findViewById(R.id.btnSubtrair) as Button
+        var btnDivisao = findViewById(R.id.btnDividir) as Button
+        var btnMultiplicacao = findViewById(R.id.btnMultiplicacao) as Button
         var btnLimpar = findViewById(R.id.btnLimpar) as Button
-        var tvResultado = findViewById(R.id.tvResultado) as TextView
         var errorMessage: String = ""
+        var tvOperacao = findViewById(R.id.tvOperacao) as TextView
+        var tvNumeros = findViewById(R.id.tvNumeros) as TextView
 
         var btn1 = findViewById(R.id.btn1) as Button
         var btn2 = findViewById(R.id.btn2) as Button
@@ -31,67 +31,99 @@ class MainActivity : AppCompatActivity() {
         var btn7 = findViewById(R.id.btn7) as Button
         var btn8 = findViewById(R.id.btn8) as Button
         var btn9 = findViewById(R.id.btn9) as Button
-
-        //Função para colocar números no edit text em focus: putNumber()
-        //1 -> Passar um Int no listener do btn@ como parametro
-        //2 -> Pegar esse btn e verificar qual dos botões de 1..9 é para jogar dentro do edt em focus
-        //3 -> Passar o número para dentro do edt
+        var btn0 = findViewById(R.id.btn0) as Button
+        var btnIgual = findViewById(R.id.btnIgual) as Button
+        var btnPonto = findViewById(R.id.btnPonto) as Button
 
         fun putNumber(numero: String){
-            if (edtOperando1.isFocused) {
-                var edt: String = edtOperando1.text.toString() + numero
-                if (edtOperando1.text.isNotEmpty()) {
-                    edtOperando1.setText(edt)
-                } else {
-                    edtOperando1.setText(numero)
-                }
 
-            }
-            if (edtOperando2.isFocused){
-                var edt = edtOperando2.text.toString() + numero
-                if (edtOperando2.text.isNotEmpty()) {
-                    edtOperando2.setText(edt)
-                } else {
-                    edtOperando2.setText(numero)
-                }
-
-            }
+            btnPonto.isEnabled = true
+            btnLimpar.isEnabled = true
+            tvOperacao.setText(tvOperacao.text.toString() + numero)
+            tvNumeros.setText(tvNumeros.text.toString() + numero)
         }
 
+        var operando1: String = ""
+        var operando2: String = ""
+        var operacao: String = ""
+        var resultado: Float = 0f
+
         btnLimpar.isEnabled = false
+        btnPonto.isEnabled = false
+        btnIgual.isEnabled = false
 
-        btnCalcular.setOnClickListener() {
-            if(edtOperando1.text.isNotEmpty() && edtOperando2.text.isNotEmpty()){
-                try {
-                    var subtracao: Int = edtOperando1.text.toString().toInt() - edtOperando2.text.toString().toInt()
-                    tvResultado.setText("Resultado da Operação: " + subtracao.toString())
-                    btnLimpar.isEnabled = true
-                } catch (e:Exception) {
-                    edtOperando1.text.clear()
-                    edtOperando2.text.clear()
-                    edtOperando1.requestFocus()
-                    btnLimpar.isEnabled = false
-                    errorMessage = "Dígitos inválidos, por favor, preencha os campos novamente com número inteiros positivos"
-                    Toast.makeText(applicationContext, errorMessage, LENGTH_SHORT).show()
-                }
-            } else {
-                errorMessage = "Você deixou um dos campos vazios, por favor preencha-os"
-                Toast.makeText(applicationContext, errorMessage, LENGTH_SHORT).show()
-            }
+        btnSubtracao.setOnClickListener() {
 
+            operando1 = tvOperacao.text.toString()
+            putNumber("-")
+            tvNumeros.text = ""
+            operacao = "-"
+            btnIgual.isEnabled = true
 
+        }
+
+        btnSoma.setOnClickListener() {
+
+            operando1 = tvOperacao.text.toString()
+            putNumber("+")
+            tvNumeros.text = ""
+            operacao = "+"
+            btnIgual.isEnabled = true
+
+        }
+
+        btnDivisao.setOnClickListener() {
+
+            operando1 = tvOperacao.text.toString()
+            putNumber("/")
+            tvNumeros.text = ""
+            operacao = "/"
+            btnIgual.isEnabled = true
+
+        }
+        btnMultiplicacao.setOnClickListener() {
+
+            operando1 = tvOperacao.text.toString()
+            putNumber("x")
+            tvNumeros.text = ""
+            operacao = "x"
+            btnIgual.isEnabled = true
 
         }
 
         btnLimpar.setOnClickListener() {
 
-            edtOperando1.text.clear()
-            edtOperando2.text.clear()
-            edtOperando1.requestFocus()
+            tvOperacao.text = ""
+            tvNumeros.text = ""
             btnLimpar.isEnabled = false
+            btnPonto.isEnabled = false
+
         }
 
+        btnIgual.setOnClickListener() {
 
+            operando2 = tvNumeros.text.toString()
+
+            if (operacao == "+"){
+                resultado = operando1.toFloat() + operando2.toFloat()
+            }
+
+            if (operacao == "-"){
+                resultado = operando1.toFloat() - operando2.toFloat()
+            }
+
+            if (operacao == "x"){
+                resultado = operando1.toFloat() * operando2.toFloat()
+            }
+
+            if (operacao == "/"){
+                resultado = operando1.toFloat() / operando2.toFloat()
+            }
+
+            tvNumeros.setText(resultado.toString().format("%.2f"))
+        }
+
+        btn0.setOnClickListener(){ putNumber("0") }
         btn1.setOnClickListener(){ putNumber("1") }
         btn2.setOnClickListener(){ putNumber("2") }
         btn3.setOnClickListener(){ putNumber("3") }
@@ -101,6 +133,7 @@ class MainActivity : AppCompatActivity() {
         btn7.setOnClickListener(){ putNumber("7") }
         btn8.setOnClickListener(){ putNumber("8") }
         btn9.setOnClickListener(){ putNumber("9") }
+        btnPonto.setOnClickListener(){ putNumber("."); btnPonto.isEnabled = false; btnPonto.isEnabled = false}
 
     } //fim do create
 } //fim do main

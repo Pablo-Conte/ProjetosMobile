@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">Aplicativo5-Subtrair</string>
-    <string name="msgTitulo">Calcular Subtração</string>
+    <string name="msgTitulo">Calcular</string>
     <string name="msgOperador1">Primeiro Operador</string>
     <string name="msgOperador2">Segundo Operador</string>
     <string name="msgResultado">Resultado da Operação</string>
     <string name="msgHintOperador1">Informe o operando 1</string>
     <string name="msgHintOperador2">Informe o operando 2</string>
 
-    <string name="msgCalcular">Calcular</string>
-    <string name="msgLimpar">Limpar</string>
+    <string name="msgSubtrair">-</string>
+    <string name="msgSoma">+</string>
+    <string name="msgDivisao">/</string>
+    <string name="msgMuliplicacao">X</string>
+    <string name="msgLimpar">C</string>
 
     <string name="btn1">1</string>
     <string name="btn2">2</string>
@@ -19,4 +22,7 @@
     <string name="btn7">7</string>
     <string name="btn8">8</string>
     <string name="btn9">9</string>
+    <string name="btn0">0</string>
+    <string name="btnIgual">=</string>
+    <string name="btnPonto">.</string>
 </resources>
