@@ -34,31 +34,67 @@ class MainActivity : AppCompatActivity() {
         var btn0 = findViewById(R.id.btn0) as Button
         var btnIgual = findViewById(R.id.btnIgual) as Button
         var btnPonto = findViewById(R.id.btnPonto) as Button
+        var ponto: String = ""
 
-        fun putNumber(numero: String){
+        //Desabilitando botões para não ocasionar erros + variaveis anti-problema
 
-            btnPonto.isEnabled = true
-            btnLimpar.isEnabled = true
-            tvOperacao.setText(tvOperacao.text.toString() + numero)
-            tvNumeros.setText(tvNumeros.text.toString() + numero)
-        }
 
+        btnDivisao.isEnabled = false
+        btnMultiplicacao.isEnabled = false
+        btnDivisao.isEnabled = false
+        btnSubtracao.isEnabled = false
+        btnSoma.isEnabled = false
+        btnLimpar.isEnabled = false
+        btnPonto.isEnabled = false
+        btnIgual.isEnabled = false
+        var pontoVerify: Boolean = true
         var operando1: String = ""
         var operando2: String = ""
         var operacao: String = ""
         var resultado: Float = 0f
+        var igualEnable: Boolean = false
 
-        btnLimpar.isEnabled = false
-        btnPonto.isEnabled = false
-        btnIgual.isEnabled = false
+        fun putNumber(numero: String){
+
+            if (pontoVerify){
+                btnPonto.isEnabled = true
+                pontoVerify = false
+            }
+
+            if (igualEnable == true) {
+                btnIgual.isEnabled = true
+            }
+
+            if (numero == ".") {
+                btnPonto.isEnabled = false
+            }
+
+            if (operacao == ""){
+                btnDivisao.isEnabled = true
+                btnMultiplicacao.isEnabled = true
+                btnDivisao.isEnabled = true
+                btnSubtracao.isEnabled = true
+                btnSoma.isEnabled = true
+                btnLimpar.isEnabled = true
+            }
+
+            tvOperacao.setText(tvOperacao.text.toString() + numero)
+            tvNumeros.setText(tvNumeros.text.toString() + numero)
+        }
 
         btnSubtracao.setOnClickListener() {
 
-            operando1 = tvOperacao.text.toString()
             putNumber("-")
+            pontoVerify = true
+            operando1 = tvOperacao.text.toString()
             tvNumeros.text = ""
             operacao = "-"
-            btnIgual.isEnabled = true
+            btnDivisao.isEnabled = false
+            btnMultiplicacao.isEnabled = false
+            btnDivisao.isEnabled = false
+            btnSubtracao.isEnabled = false
+            btnSoma.isEnabled = false
+            igualEnable = true
 
         }
 
@@ -66,9 +102,15 @@ class MainActivity : AppCompatActivity() {
 
             operando1 = tvOperacao.text.toString()
             putNumber("+")
+            pontoVerify = true
             tvNumeros.text = ""
             operacao = "+"
-            btnIgual.isEnabled = true
+            btnDivisao.isEnabled = false
+            btnMultiplicacao.isEnabled = false
+            btnDivisao.isEnabled = false
+            btnSubtracao.isEnabled = false
+            btnSoma.isEnabled = false
+            igualEnable = true
 
         }
 
@@ -76,32 +118,48 @@ class MainActivity : AppCompatActivity() {
 
             operando1 = tvOperacao.text.toString()
             putNumber("/")
+            pontoVerify = true
             tvNumeros.text = ""
             operacao = "/"
-            btnIgual.isEnabled = true
+            btnDivisao.isEnabled = false
+            btnMultiplicacao.isEnabled = false
+            btnDivisao.isEnabled = false
+            btnSubtracao.isEnabled = false
+            btnSoma.isEnabled = false
+            igualEnable = true
 
         }
         btnMultiplicacao.setOnClickListener() {
 
             operando1 = tvOperacao.text.toString()
             putNumber("x")
+            pontoVerify = true
             tvNumeros.text = ""
             operacao = "x"
-            btnIgual.isEnabled = true
+            btnDivisao.isEnabled = false
+            btnMultiplicacao.isEnabled = false
+            btnDivisao.isEnabled = false
+            btnSubtracao.isEnabled = false
+            btnSoma.isEnabled = false
+            igualEnable = true
 
         }
 
         btnLimpar.setOnClickListener() {
 
+            pontoVerify = true
             tvOperacao.text = ""
             tvNumeros.text = ""
             btnLimpar.isEnabled = false
             btnPonto.isEnabled = false
+            btnIgual.isEnabled = false
+            operacao = ""
 
         }
 
         btnIgual.setOnClickListener() {
 
+            pontoVerify = true
             operando2 = tvNumeros.text.toString()
 
             if (operacao == "+"){
@@ -121,6 +179,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             tvNumeros.setText(resultado.toString().format("%.2f"))
+            btnIgual.isEnabled = false
+            igualEnable = false
+            btnPonto.isEnabled = false
         }
 
         btn0.setOnClickListener(){ putNumber("0") }
@@ -133,7 +194,7 @@ class MainActivity : AppCompatActivity() {
         btn7.setOnClickListener(){ putNumber("7") }
         btn8.setOnClickListener(){ putNumber("8") }
         btn9.setOnClickListener(){ putNumber("9") }
-        btnPonto.setOnClickListener(){ putNumber("."); btnPonto.isEnabled = false; btnPonto.isEnabled = false}
+        btnPonto.setOnClickListener(){ putNumber(".") }
 
     } //fim do create
 } //fim do main
