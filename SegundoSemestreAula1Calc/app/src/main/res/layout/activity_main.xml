@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/LayoutPrincipal"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/tvOperacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_weight="2"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="34dp"
+        android:background="#CFCCCC"
+        android:gravity="bottom|right"
+        />
+
+    <TextView
+        android:id="@+id/tvMostrador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_weight="3"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="84dp"
+        android:gravity="bottom|right"/>
+
+    <LinearLayout
+        android:id="@+id/layoutBotoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="14"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="104dp"
+        android:background="#B2B0B0"
+        />
+
+    <TextView
+        android:id="@+id/tvAutoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Pablo Conte"
+        android:gravity="bottom|right"
+        />
+
+</LinearLayout>
