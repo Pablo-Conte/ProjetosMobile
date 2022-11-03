@@ -20,6 +20,7 @@
         tools:layout_editor_absoluteY="34dp"
         android:background="#CFCCCC"
         android:gravity="bottom|right"
+        android:textSize="20dp"
         />
 
     <TextView
@@ -30,7 +31,8 @@
         android:layout_weight="3"
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="84dp"
-        android:gravity="bottom|right"/>
+        android:gravity="bottom|right"
+        android:textSize="50dp"/>
 
     <LinearLayout
         android:id="@+id/layoutBotoes"
