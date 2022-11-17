@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,25 @@ class MainActivity : AppCompatActivity() {
         var resultado: Float = 0f
         var igualEnable: Boolean = false
 
+        var aposResultado: Boolean = false //verifica se temos um resultado sendo apresentado
+
         fun putNumber(numero: String){
+
+            if (tvNumeros.text.isEmpty()) {
+                btnPonto.isEnabled = true
+            }
+
+            if (aposResultado == true) {
+                pontoVerify = true
+                tvOperacao.text = ""
+                tvNumeros.text = ""
+                btnLimpar.isEnabled = false
+                btnPonto.isEnabled = false
+                btnIgual.isEnabled = false
+                operacao = ""
+                aposResultado = false
+                imgBtnBackspace.isEnabled = true
+            }
 
             if (pontoVerify){
                 btnPonto.isEnabled = true
@@ -77,27 +96,60 @@ class MainActivity : AppCompatActivity() {
                 btnLimpar.isEnabled = true
             }
 
+            if (numero == "."){
+                btnMultiplicacao.isEnabled = false
+                btnDivisao.isEnabled = false
+                btnSubtracao.isEnabled = false
+                btnSoma.isEnabled = false
+            }
+
             tvOperacao.setText(tvOperacao.text.toString() + numero)
             tvNumeros.setText(tvNumeros.text.toString() + numero)
         }
 
         imgBtnBackspace.setOnClickListener() {
             var TvNumerosTextLength = tvNumeros.text.toString().length
-            val textSomente = tvNumeros.text.toString()
-            var ok = ""
-            TvNumerosTextLength = TvNumerosTextLength - 2
-            for (c in 0..TvNumerosTextLength){
-                ok = ok + textSomente.toCharArray()[c]
+
+            if (TvNumerosTextLength == 0) {
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(applicationContext, "Não foi possivel apagar", duration).show()
+            } else {
+                val textSomente = tvNumeros.text.toString()
+                val textWithBack = textSomente.substring(0, textSomente.length - 1)
+                val ultimaChar = textSomente[textSomente.length-1]
+                if (ultimaChar == '.') {
+                    btnPonto.isEnabled = true
+                    btnMultiplicacao.isEnabled = true
+                    btnDivisao.isEnabled = true
+                    btnSubtracao.isEnabled = true
+                    btnSoma.isEnabled = true
+                }
+
+                if (operando1.isNotEmpty()) {
+                    tvNumeros.setText(textWithBack)
+                    tvOperacao.setText(operando1 + operacao + textWithBack)
+                } else {
+                    tvNumeros.setText(textWithBack)
+                    tvOperacao.setText(textWithBack)
+                }
             }
 
-            tvNumeros.setText(ok)
+            if (tvNumeros.text.isEmpty()) {
+                btnPonto.isEnabled = false
+                btnDivisao.isEnabled = false
+                btnMultiplicacao.isEnabled = false
+                btnSoma.isEnabled = false
+                btnSubtracao.isEnabled = false
+            }
+
+
         }
 
         btnSubtracao.setOnClickListener() {
 
+            operando1 = tvOperacao.text.toString()
             putNumber("-")
             pontoVerify = true
-            operando1 = tvOperacao.text.toString()
             tvNumeros.text = ""
             operacao = "-"
             btnDivisao.isEnabled = false
@@ -106,6 +158,7 @@ class MainActivity : AppCompatActivity() {
             btnSubtracao.isEnabled = false
             btnSoma.isEnabled = false
             igualEnable = true
+            btnPonto.isEnabled = false
 
         }
 
@@ -122,6 +175,7 @@ class MainActivity : AppCompatActivity() {
             btnSubtracao.isEnabled = false
             btnSoma.isEnabled = false
             igualEnable = true
+            btnPonto.isEnabled = false
 
         }
 
@@ -138,6 +192,7 @@ class MainActivity : AppCompatActivity() {
             btnSubtracao.isEnabled = false
             btnSoma.isEnabled = false
             igualEnable = true
+            btnPonto.isEnabled = false
 
         }
         btnMultiplicacao.setOnClickListener() {
@@ -153,6 +208,7 @@ class MainActivity : AppCompatActivity() {
             btnSubtracao.isEnabled = false
             btnSoma.isEnabled = false
             igualEnable = true
+            btnPonto.isEnabled = false
 
         }
 
@@ -164,7 +220,12 @@ class MainActivity : AppCompatActivity() {
             btnLimpar.isEnabled = false
             btnPonto.isEnabled = false
             btnIgual.isEnabled = false
+            btnDivisao.isEnabled = false
+            btnMultiplicacao.isEnabled = false
+            btnSoma.isEnabled = false
+            btnSubtracao.isEnabled = false
             operacao = ""
+            imgBtnBackspace.isEnabled = true
 
         }
 
@@ -173,26 +234,36 @@ class MainActivity : AppCompatActivity() {
             pontoVerify = true
             operando2 = tvNumeros.text.toString()
 
-            if (operacao == "+"){
-                resultado = operando1.toFloat() + operando2.toFloat()
-            }
+            if (operacao.isEmpty() || operando1.isEmpty() || operando2.isEmpty()){
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(applicationContext, "Não foi possivel possivel realizar a operação", duration).show()
+            } else {
+                if (operacao == "+"){
+                    resultado = operando1.toFloat() + operando2.toFloat()
+                }
 
-            if (operacao == "-"){
-                resultado = operando1.toFloat() - operando2.toFloat()
-            }
+                if (operacao == "-"){
+                    resultado = operando1.toFloat() - operando2.toFloat()
+                }
 
-            if (operacao == "x"){
-                resultado = operando1.toFloat() * operando2.toFloat()
-            }
+                if (operacao == "x"){
+                    resultado = operando1.toFloat() * operando2.toFloat()
+                }
 
-            if (operacao == "/"){
-                resultado = operando1.toFloat() / operando2.toFloat()
-            }
+                if (operacao == "/"){
+                    resultado = operando1.toFloat() / operando2.toFloat()
+                }
 
-            tvNumeros.setText(resultado.toString().format("%.2f"))
-            btnIgual.isEnabled = false
-            igualEnable = false
-            btnPonto.isEnabled = false
+                tvNumeros.setText(resultado.toString().format("%.2f"))
+                btnIgual.isEnabled = false
+                igualEnable = false
+                btnPonto.isEnabled = false
+                aposResultado = true
+                operando1 = ""
+                operando2 = ""
+                operacao = ""
+                imgBtnBackspace.isEnabled = false
+            }
         }
 
         btn0.setOnClickListener(){ putNumber("0") }
