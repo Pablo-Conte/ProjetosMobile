@@ -2,7 +2,7 @@
     <string name="app_name">Placar</string>
     <string name="txtvTime1">Time 1</string>
     <string name="txtvTime2">Time 2</string>
-    <string name="txtvSet">1º</string>
+    <string name="txtvSet">1</string>
     <string name="btnEditar">Editar</string>
     <string name="txtvContra">X</string>
     <string name="txtvSets">Sets</string>
@@ -11,6 +11,7 @@
     <string name="txtvPontosTime1">0</string>
     <string name="txtvPontosTime2">0</string>
     <string name="btnMais">+</string>
+    <string name="btnMenos">-</string>
     <string name="btnSetChoice1">1 Sets</string>
     <string name="btnSetChoice2">3 Sets</string>
     <string name="btnSetChoice3">5 Sets</string>
