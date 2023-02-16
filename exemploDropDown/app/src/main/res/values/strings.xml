@@ -1,3 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">exemploDropDown</string>
+    <string name="msgSelecionado">Planeta selecionado: </string>
+    <string name="msgSelecione">Selecione um planeta: </string>
+    <string name="btnVerificar">Verificar Planeta</string>
+    <string-array name="sistema_solar">
+        <item></item>
+        <item>Júpiter</item>
+        <item>Marte</item>
+        <item>Mercúrio</item>
+        <item>Netuno</item>
+        <item>Saturno</item>
+        <item>Terra</item>
+        <item>Urano</item>
+        <item>Vênus</item>
+    </string-array>
 </resources>
