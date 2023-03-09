@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Avaliacao_Pablo</string>
+    <string name="txtMensagem">Olá, seja bem vindo!</string>
+
+    <string-array name="selecao">
+        <item>Selecione...</item>
+        <item>Opcao 1</item>
+        <item>Opcao 2</item>
+        <item>Opcao 3</item>
+        <item>Opcao 4</item>
+    </string-array>
+
+</resources>
